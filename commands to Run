@@ -1,0 +1,70 @@
+To run flume and collect the tweets in hdfs
+flume-ng agent --conf /usr/lib/flume-ng/conf/ -f /usr/lib/flume-ng/conf/flume.conf -D flume.root.logger = DEBUG, console -n TwitterAgent
+
+
+To run the project at hdfs and to store the result in hdfs itself
+hadoop jar finalPro.jar DiseasesAnalysisDriver /collected /output4
+
+
+
+
+To start and run HIVE
+
+ service mysqld start
+service hive-metastore start
+hive
+
+
+
+HIVE COMMANDS
+TO create table
+create table malaria(cities String, count int);          
+
+To insert values into the table from the file containing the output of the map-reduce function
+insert into table cholera select Locations, Tweets from analysis where Category like '%CHOLERA%';     
+
+To display the contents of the table
+select * from malaria; 
+
+To exit
+Exit;
+
+To store the output of hive(Output of query) in .csv format
+hive -e 'SET hive.cli.print.header=true; select * from dcount;'> /home/renuka/hiveop1.csv
+
+
+
+
+HADOOP COMMANDS THAT TO BE RUN ON HDFS
+
+To remove file
+hadoop fs -rm /output2/part-r-00000
+
+To load the file from HDFS to local system
+hdfs dfs -get /output2/part-r-00000 /home/renuka/
+
+To put the file from local system to HDFS
+hdfs dfs -put /home/renuka/MyProduct/Data/dup/* /collected/
+
+
+
+
+To install R software
+ wget http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+ rpm -ivh epel-release-6-8.noarch.rpm
+yum --enablerepo=epel install R
+R
+
+R COMMANDS
+To read csv file and load it to R
+ diabetes=read.csv(file="/home/renuka/diabetes.csv", header=TRUE, sep="\t")
+ 
+To plot a graph
+barplot(aids$count,names.arg=aids$category,cex.names=0.7,xlab="Locations",ylab="No_of_Tweets",col=c("black","yellow","blue","green","orange","grey"), main="AIDS")
+
+To quit
+q()
+
+
+
+
